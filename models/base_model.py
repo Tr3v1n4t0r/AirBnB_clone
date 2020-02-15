@@ -1,23 +1,23 @@
 #!/usr/bin/python3
-
+"""
+Defines a BaseModel
+"""
 import uuid
 from datetime import date, datetime, time
 
+
 class BaseModel:
-    """BaseModel Class"""
+    """Defines a BaseModel Class"""
+
     def __init__(self, *args, **kwargs):
-        if len(kwargs) is not 0:
+        """Initializes a BaseModel class"""
+        if (kwargs):
             for key, value in kwargs.items():
-                if key in "id":
-                    self.id = value
-                elif key in "created_at":
-                    self.created_at = datetime.now()
-                elif key in "updated_at":
-                    self.updated_at = datetime.now()
-                elif key in "to_dict":
-                    self.to_dict = to_dict
-                elif key in "save":
-                    self.save = save
+                if (key == 'created_at' or key == 'updated_at'):
+                    value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
+                if (key == '__class__'):
+                    continue
+                setattr(self, key, value)
         else:
             self.id = str(uuid.uuid4())
             self.save = save
