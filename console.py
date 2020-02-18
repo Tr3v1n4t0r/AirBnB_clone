@@ -90,7 +90,7 @@ class HBNBCommand(cmd.Cmd):
         if args[0] not in self.classes:
             print('** instance id missing **')
             return
-        elif:
+        else:
             try:
                 key = args[0] + '.' + args[1]
                 storage.all()[key]
@@ -170,8 +170,8 @@ class HBNBCommand(cmd.Cmd):
         print("Cya")
         return True
 
-    def do_EOF = do_quit
-    """Handles the EOF"""
-
+    def do_EOF(self, value):
+        """Handles the EOF"""
+        return True
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
