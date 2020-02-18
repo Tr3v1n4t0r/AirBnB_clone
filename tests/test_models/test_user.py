@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Test for base_models class"""
+""" Test for User class"""
 
 import unittest
 from datetime import date, time, datetime
@@ -10,7 +10,7 @@ import os, time, pep8
 
 
 class Test_User(unittest.TestCase):
-    """ Test For base_model class"""
+    """ Test For user class"""
 
     def setUp(self):
         """ Move Json files if they exist """
@@ -98,7 +98,7 @@ class Test_User(unittest.TestCase):
 
     def test_timeFormat(self):
         """ check Created_at and Updated_at values"""
-        l = BaseModel()
+        l = User()
         m = "%Y-%m-%dT%H:%M:%S.%f"
         n = l.to_dict()
         self.assertEqual(n["created_at"], l.created_at.strftime(m))
