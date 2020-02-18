@@ -6,7 +6,9 @@ from datetime import date, time, datetime
 import uuid
 from models import storage
 from models.base_model import BaseModel
-import os, time, pep8
+import os
+import time
+import pep8
 
 
 class TestBaseModel(unittest.TestCase):
@@ -28,10 +30,11 @@ class TestBaseModel(unittest.TestCase):
         """ checks for pep8 compliance """
         style = pep8.StyleGuide(quiet=True)
         result = style.check_file(["models/base_model.py"])
-        self.assertEqual(result.total_errors, 0, "found code style errors and warnings")
+        self.assertEqual(result.total_errors, 0,
+                         "found code style errors and warnings")
 
     def test_type(self):
-        """ check for name, number, class, updated_at, created_at, id type test """
+        """ check name, number, class, updated_at, created_at, id type test """
         a = BaseModel()
         self.assertTrue(type(a), BaseModel)
         a.name = "Toxic_player"
@@ -44,14 +47,12 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(type(a.created_at), datetime)
         self.assertEqual(type(a.updated_at), datetime)
 
-
     def test_defaultAttribute(self):
         """ check for id, created_at, updated_at default attributes """
         b = BaseModel()
         self.assertTrue(hasattr(b, "id"))
         self.assertTrue(hasattr(b, "created_at"))
         self.assertTrue(hasattr(b, "updated_at"))
-
 
     def test_Extra(self):
         """ check for the dictionary """
@@ -63,14 +64,12 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(hasattr(c, "dictionary"))
         self.assertEqual(type(c.dictionary), dict)
 
-
     def test_different_id(self):
         """ Id should be different """
         d = BaseModel()
         e = BaseModel()
         self.assertNotEqual(e.id, d.id)
         self.assertEqual(len(e.id), len(d.id))
-
 
     def test_save(self):
         """ checks if updated_at is saved """
@@ -81,14 +80,14 @@ class TestBaseModel(unittest.TestCase):
         h = f.updated_at
         self.assertNotEqual(g, h)
 
-
     def test_to_dict(self):
         """ dictionary conversion test """
         i = BaseModel()
         i.name = "Cute_anime_girl"
         i.number = 25
         j = i.to_dict()
-        k = ["id", "name", "my_number", "created_at", "updated_at", "__class__"]
+        k = ["id", "name", "my_number", "created_at", "updated_at",
+             "__class__"]
         self.assertEqual(j["name"], "Cute_anime_girl")
         self.assertEqual(j["my_number"], 25)
         self.assertEqual(j["__class__"], "BaseModel")

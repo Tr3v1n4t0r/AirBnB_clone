@@ -6,7 +6,9 @@ from datetime import date, time, datetime
 import uuid
 from models import storage
 from models.state import State
-import os, time, pep8
+import os
+import time
+import pep8
 
 
 class Test_State(unittest.TestCase):
@@ -28,7 +30,8 @@ class Test_State(unittest.TestCase):
         """ checks for pep8 compliance """
         style = pep8.StyleGuide(quiet=True)
         result = style.check_file(["models/user.py"])
-        self.assertEqual(result.total_errors, 0, "found code style errors and warnings")
+        self.assertEqual(result.total_errors, 0,
+                         "found code style errors and warnings")
 
     def test_defaultAttribute(self):
         """ check for id, created_at, updated_at default attributes """
@@ -59,7 +62,6 @@ class Test_State(unittest.TestCase):
         d.save()
         f = d.updated_at
         self.assertNotEqual(f, e)
-
 
     def test_to_dict(self):
         """ dictionary conversion test """
