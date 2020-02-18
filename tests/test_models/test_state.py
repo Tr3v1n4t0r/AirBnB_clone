@@ -1,16 +1,16 @@
 #!/usr/bin/python3
-""" Test for Amenity class"""
+""" Test for State class"""
 
 import unittest
 from datetime import date, time, datetime
 import uuid
 from models import storage
-from models.amenity import Amenity
+from models.state import State
 import os, time, pep8
 
 
-class Test_Amenity(unittest.TestCase):
-    """ Test For Amenity class"""
+class Test_State(unittest.TestCase):
+    """ Test For State class"""
 
     def setUp(self):
         """ Move Json files if they exist """
@@ -32,7 +32,7 @@ class Test_Amenity(unittest.TestCase):
 
     def test_defaultAttribute(self):
         """ check for id, created_at, updated_at default attributes """
-        b = Amenity()
+        b = State()
         self.assertTrue(hasattr(b, "id"))
         self.assertTrue(hasattr(b, "created_at"))
         self.assertTrue(hasattr(b, "updated_at"))
@@ -45,7 +45,7 @@ class Test_Amenity(unittest.TestCase):
 
     def test_assignAtt(self):
         """ Test assigned attributes"""
-        c = Amenity()
+        c = State()
         c.text1 = "Pizza"
         c.text2 = "sashimi"
         self.assertEqual(type(c.text1), str)
@@ -53,7 +53,7 @@ class Test_Amenity(unittest.TestCase):
 
     def test_save(self):
         """ checks if updated_at is saved """
-        d = Amenity()
+        d = State()
         e = d.updated_at
         time.sleep(0.1)
         d.save()
@@ -63,7 +63,7 @@ class Test_Amenity(unittest.TestCase):
 
     def test_to_dict(self):
         """ dictionary conversion test """
-        i = Amenity()
+        i = State()
         i.name = "Cute_anime_girl"
         i.number = 25
         j = i.to_dict()
@@ -77,11 +77,11 @@ class Test_Amenity(unittest.TestCase):
 
     def test_reCreate_kwarg(self):
         """Recreate dictionary from saved dictionary"""
-        k = Amenity()
+        k = State()
         k.name = "Cute_anime_girl"
         k.number = 99
         j = k.to_dict()
-        l = amenity(**j)
+        l = State(**j)
         self.assertEqual(k.name, l.name)
         self.assertEqual(k.number, l.number)
         self.assertEqual(k.id, l.id)
@@ -92,7 +92,7 @@ class Test_Amenity(unittest.TestCase):
 
     def test_timeFormat(self):
         """ check Created_at and Updated_at values"""
-        l = Amenity()
+        l = State()
         m = "%Y-%m-%dT%H:%M:%S.%f"
         n = l.to_dict()
         self.assertEqual(n["created_at"], l.created_at.strftime(m))
