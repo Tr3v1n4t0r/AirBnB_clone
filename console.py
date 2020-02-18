@@ -4,11 +4,63 @@ import cmd
 import shlex
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 class HBNBCommand(cmd.Cmd):
     """Class inherits cmd module import"""
 
     prompt = '(HBNB)'
+
+    classes = ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place',
+               'Review']
+
+    functions = ['update', 'create', 'show', 'destroy', 'quit']
+
+    def precmd(self, line):
+        """Parses the input string"""
+        for c in self.classes:
+            for f in self.functions:
+                pref = "{}.{}".format(c, f)
+                if line.startswith(pref):
+                    remain = line[len(pref) + 1:-1].replace(",", "")
+                    remain = remain.replace(":", "")
+                    remain = remain.replace("}", "")
+                    remain2 = shlex.split(remain, posix=False)
+                    if (len(remain2) == 1):
+                        id_attr = remain2[0].strip("\"'")
+                        return "{} {} {}".format(f, c, id_attr)
+                    elif (len(remain2) == 2):
+                        id_attr = remain2[0].strip("\"'")
+                        attr_name = remain2[1].strip("\"'")
+                        return "{} {} {} {}".format(f, c, id_attr, attr_name)
+                    elif (len(remain2) >= 3):
+                        id_attr = remain2[0]
+                        attr_name = remain2[1]
+                        if not attr_name.startswith('{'):
+                            attr_val = remain2[2]
+                            return "{} {} {} {} {}".format(f, c, id_attr,
+                                                           attr_name, attr_val)
+                        for i in range(1, len(remain2) // 2 + 1):
+                            if len(remain2) >= 2 * i + 1:
+                                attr_name = remain2[2 * i + 1].strip("\"'{}:")
+                                attr_value = remain2[2 * i].strip("\"'{}:")
+                            if (i >= len(remain2) // 2):
+                                return "{} {} {} {} {}".format(f, c, id_attr,
+                                                               attr_name,
+                                                               attr_val)
+                            else:
+                                self.cmdqueue.append(f + ' ' + c + ' ' +
+                                                     id_attr + ' "' +
+                                                     attr_name + '" "' +
+                                                     attr_val + '"')
+                    new_line = "{} {} {}".format(f, c, remain)
+                    return new_line
+        return line
 
     def do_all(self, line):
         """Prints all instances"""
@@ -118,7 +170,7 @@ class HBNBCommand(cmd.Cmd):
         print("Cya")
         return True
 
-    do_EOF = do_quit
+    def do_EOF = do_quit
     """Handles the EOF"""
 
 if __name__ == '__main__':
