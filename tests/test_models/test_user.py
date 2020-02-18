@@ -5,7 +5,7 @@ import unittest
 from datetime import date, time, datetime
 import uuid
 from models import storage
-from models.base_model import User
+from models.user import User
 import os, time, pep8
 
 
