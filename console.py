@@ -109,17 +109,17 @@ class HBNBCommand(cmd.Cmd):
             my_list = [str(value) for key, value in storage.all().items()]
             if len(my_list) != 0:
                 print(my_list)
-            else:
-                args = lint.split()
-                if args[0] in self.classes:
-                    my_list = []
-                    for key, value in storage.all().items():
-                        if str(key.split('.')[0]) == args[0]:
-                            my_list.append(str(value))
-                    if len(my_list) != 0:
+        else:
+            args = lint.split()
+            if args[0] in self.classes:
+                my_list = []
+                for key, value in storage.all().items():
+                    if str(key.split('.')[0]) == args[0]:
+                        my_list.append(str(value))
+                if len(my_list) != 0:
                         print(my_list)
-                else:
-                    print("** class doen't exist **")
+            else:
+                print("** class doen't exist **")
 
     def do_create(self, line):
         """Create a new instance of Base Model"""
