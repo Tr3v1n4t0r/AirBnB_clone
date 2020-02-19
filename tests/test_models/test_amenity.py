@@ -85,7 +85,7 @@ class Test_Amenity(unittest.TestCase):
         k.name = "Cute_anime_girl"
         k.number = 99
         j = k.to_dict()
-        l = amenity(**j)
+        l = Amenity(**j)
         self.assertEqual(k.name, l.name)
         self.assertEqual(k.number, l.number)
         self.assertEqual(k.id, l.id)
