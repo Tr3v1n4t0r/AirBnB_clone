@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-
+"""Entry point of the command interpreter"""
+import traceback
+import sys
 import cmd
 import shlex
 from models import storage
@@ -10,6 +12,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
+
 
 class HBNBCommand(cmd.Cmd):
     """Class inherits cmd module import"""
