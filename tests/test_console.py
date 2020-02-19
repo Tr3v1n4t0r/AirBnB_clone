@@ -216,7 +216,7 @@ class TestConsole(unittest.TestCase):
             id = f.getvalue().strip()
 
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("destroy BaseModel" + str(id))
+            HBNBCommand().onecmd("destroy BaseModel " + str(id))
             self.assertEqual(f.getvalue().strip(), "")
 
     def test_all(self):
@@ -267,7 +267,7 @@ class TestConsole(unittest.TestCase):
 
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("update User")
-            self.assertEqual(f.getvalue().strip(), "** class id missing **")
+            self.assertEqual(f.getvalue().strip(), "** instance id missing **")
 
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("update User Trevor")
@@ -312,8 +312,8 @@ class TestConsole(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("help")
             self.assertEqual(f.getvalue().strip(),
-                             "Documented command (type help <topic>):" +
-                             "\n=======================================" +
+                             "Documented commands (type help <topic>):" +
+                             "\n========================================" +
                              "\nEOF  all  create  destroy  help  quit  " +
                              "show  update")
 
