@@ -58,7 +58,7 @@ class TestBaseModel(unittest.TestCase):
         """ check for the dictionary """
         c = BaseModel()
         c.birthday = [12, 12, 2012]
-        c.dictionary = {day: "12", month: "12", year: "2012"}
+        c.dictionary = {"day": 12, "month": 12, "year": 1012}
         self.assertTrue(hasattr(c, "birthday"))
         self.assertEqual(type(c.birthday), list)
         self.assertTrue(hasattr(c, "dictionary"))
@@ -84,7 +84,7 @@ class TestBaseModel(unittest.TestCase):
         """ dictionary conversion test """
         i = BaseModel()
         i.name = "Cute_anime_girl"
-        i.number = 25
+        i.my_number = 25
         j = i.to_dict()
         k = ["id", "name", "my_number", "created_at", "updated_at",
              "__class__"]
