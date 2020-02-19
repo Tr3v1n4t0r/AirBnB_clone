@@ -176,5 +176,6 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, value):
         """Handles the EOF"""
         return True
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
