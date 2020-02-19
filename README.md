@@ -40,13 +40,21 @@ All
 ```
 All <Objects>
 ```
-Update
+EOF
 ```
-update <class>
+EOF
 ```
 Create
 ```
 create <class name>
+```
+Destroy
+```
+destroy
+```
+Update
+```
+update
 ```
 show
 ```
