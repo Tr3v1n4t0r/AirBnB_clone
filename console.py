@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+""" The Console """
 import cmd
 import shlex
 from models import storage
@@ -10,6 +11,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
+
 
 class HBNBCommand(cmd.Cmd):
     """Class inherits cmd module import"""
@@ -173,5 +175,6 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, value):
         """Handles the EOF"""
         return True
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
