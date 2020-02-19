@@ -247,7 +247,7 @@ class TestConsole(unittest.TestCase):
             self.assertTrue("[Review]" in f.getvalue().strip())
             self.assertTrue("[Amenity]" in f.getvalue().strip())
             self.assertTrue("[Place]" in f.getvalue().strip())
-            self.assertTrue("create_at" in f.getvalue().strip())
+            self.assertTrue("created_at" in f.getvalue().strip())
             self.assertTrue("updated_at" in f.getvalue().strip())
             self.assertTrue("id" in f.getvalue().strip())
 
