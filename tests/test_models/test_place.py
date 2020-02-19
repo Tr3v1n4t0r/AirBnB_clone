@@ -28,7 +28,7 @@ class Test_Place(unittest.TestCase):
     def test_pep8(self):
         """ checks for pep8 compliance """
         style = pep8.StyleGuide(quiet=True)
-        result = style.check_file(["models/user.py"])
+        result = style.check_files(["models/place.py"])
         self.assertEqual(result.total_errors, 0,
                          "found code style errors and warnings")
 
@@ -91,7 +91,7 @@ class Test_Place(unittest.TestCase):
         self.assertTrue("name" in j)
         self.assertEqual(type(j["name"]), str)
         self.assertTrue("number" in j)
-        self.assertEqual(type(j["number"]), str)
+        self.assertEqual(type(j["number"]), int)
         self.assertTrue("created_at" in j)
         self.assertTrue("updated_at" in j)
         self.assertTrue("id" in j)

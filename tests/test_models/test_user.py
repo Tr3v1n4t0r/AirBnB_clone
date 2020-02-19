@@ -29,7 +29,7 @@ class Test_User(unittest.TestCase):
     def test_pep8(self):
         """ checks for pep8 compliance """
         style = pep8.StyleGuide(quiet=True)
-        result = style.check_file(["models/user.py"])
+        result = style.check_files(["models/user.py"])
         self.assertEqual(result.total_errors, 0,
                          "found code style errors and warnings")
 
@@ -45,7 +45,7 @@ class Test_User(unittest.TestCase):
         self.assertTrue(hasattr(b, "last_name"))
         self.assertEqual(type(b.updated_at), datetime)
         self.assertEqual(type(b.created_at), datetime)
-        self.assertEqual(type(b, id), str)
+        self.assertEqual(type(b.id), str)
         self.assertFalse(hasattr(b, "Potato"))
         self.assertEqual(type(b.email), str)
         self.assertEqual(type(b.password), str)
@@ -78,7 +78,7 @@ class Test_User(unittest.TestCase):
         self.assertTrue("name" in j)
         self.assertEqual(type(j["name"]), str)
         self.assertTrue("number" in j)
-        self.assertEqual(type(j["number"]), str)
+        self.assertEqual(type(j["number"]), int)
         self.assertTrue("created_at" in j)
         self.assertTrue("updated_at" in j)
         self.assertTrue("id" in j)
