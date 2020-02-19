@@ -31,23 +31,24 @@ This console is the first step on the Holberton AirBnB clone, This console
 Help
 ```
 Help
-
+```
 Quit
 ```
 quit
-
+```
 All
 ```
 All <Objects>
-
+```
 Update
 ```
 update <class>
-
+```
 Create
 ```
 create <class name>
-
+```
 show
 ```
 show <Object>
+```
