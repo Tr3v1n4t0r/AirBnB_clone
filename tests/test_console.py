@@ -33,6 +33,12 @@ class TestConsole(unittest.TestCase):
     def test_basemodel(self):
         """ Test BaseModel """
         with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("create BaseModel")
+            id = f.getvalue().strip()
+            self.assertTrue(type(f), str)
+            self.assertEqual(len(id), 36)
+
+        with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("update BaseModel " + str(id) +
                                  " name Trevor")
             self.assertTrue(type(f), str)
@@ -159,7 +165,7 @@ class TestConsole(unittest.TestCase):
 
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("create Trevor")
-            self.assertEqual(f.getvalue().strip(), "** class name missing **")
+            self.assertEqual(f.getvalue().strip(), "** class doesn't exist **")
 
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("create BaseModel")
@@ -308,8 +314,8 @@ class TestConsole(unittest.TestCase):
             self.assertEqual(f.getvalue().strip(),
                              "Documented command (type help <topic>):" +
                              "\n=======================================" +
-                             "\nEOF all count create destroy help " +
-                             "quit show update")
+                             "\nEOF  all  create  destroy  help  quit  " +
+                             "show  update")
 
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("help EOF")
@@ -317,17 +323,12 @@ class TestConsole(unittest.TestCase):
 
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("help all")
-            self.assertEqual(f.getvalue().strip(), "Print all instances")
-
-        with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("help count")
-            self.assertEqual(f.getvalue().strip(),
-                             "Counts the number of objects")
+            self.assertEqual(f.getvalue().strip(), "Prints all instances")
 
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("help destroy")
             self.assertEqual(f.getvalue().strip(),
-                             "Delete an instance based on class name and id")
+                             "Deletes an instance based on class name and id")
 
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("help help")
@@ -337,12 +338,13 @@ class TestConsole(unittest.TestCase):
 
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("help quit")
-            self.assertEqual(f.getvalue().strip(), "Quit to exit the program")
+            self.assertEqual(f.getvalue().strip(),
+                             "Quit command to exit the program")
 
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("help show")
             self.assertEqual(f.getvalue().strip(),
-                             "Print an instance based on class name and id")
+                             "Prints an instance based on class name and id")
 
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("help garbage")

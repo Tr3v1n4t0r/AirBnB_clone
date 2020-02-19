@@ -15,13 +15,11 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
-    """Class inherits cmd module import"""
-
+    """HBNBCommmand class"""
     prompt = "(hbnb) "
 
     classes = ["BaseModel", "User", "State", "City", "Amenity", "Place",
                "Review"]
-
     functions = ["update", "create", "show", "destroy", "all"]
 
     def precmd(self, line):
@@ -172,7 +170,7 @@ class HBNBCommand(cmd.Cmd):
                 print('** no instance found **')
 
     def do_quit(self, line):
-        """Exits the console"""
+        """Quit command to exit the program"""
         return True
 
     def do_EOF(self, line):
