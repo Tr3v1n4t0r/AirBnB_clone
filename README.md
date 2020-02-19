@@ -1,10 +1,10 @@
-#AirBnB_clone
+# AirBnB_clone
 
-##Description:
+## Description:
 This console is the first step on the Holberton AirBnB clone, This console
  retrieves objects from JSON.
 
-##Classes:
+## Classes:
 ---
  * BaseModel
  * User
@@ -14,7 +14,7 @@ This console is the first step on the Holberton AirBnB clone, This console
  * Place
  * Review
 
-##Commands:
+## Commands:
 ---
  * help: lists all available commands
  * quit: exits the console
@@ -23,11 +23,31 @@ This console is the first step on the Holberton AirBnB clone, This console
  * create: creates a new instance of a Class
  * destroy: removes an object
  * update: updates an instance
+ * show: Show the created object
 
-##How to use the commands:
+## How to use the commands:
 ---
 
 Help
 ```
 Help
 
+Quit
+```
+quit
+
+All
+```
+All <Objects>
+
+Update
+```
+update <class>
+
+Create
+```
+create <class name>
+
+show
+```
+show <Object>
